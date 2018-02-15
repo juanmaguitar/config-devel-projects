@@ -6,7 +6,7 @@ const path = require('path')
 const rp = require('request-promise')
 
 const PACKAGE_NAME = 'package.json'
-const urlRemote = 'https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/'
+const urlRemote = process.env.GITHUB_RAW_URL
 
 const urlRemoteConfigPackage = urlRemote + PACKAGE_NAME
 
