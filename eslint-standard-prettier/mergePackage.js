@@ -6,16 +6,19 @@ const rp = require('request-promise')
 const PACKAGE_NAME = 'package.json'
 const urlRemote = 'https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/'
 
-const urlRemoteConfigPackage =  path.join(urlRemote, PACKAGE_NAME)
-const pathCurrentPackage =  path.join(__dirname,PACKAGE_NAME)
+const urlRemoteConfigPackage = urlRemote + PACKAGE_NAME
+const pathCurrentPackage = path.join(__dirname,PACKAGE_NAME)
 
 (async function () {
-  const configPackage = await rp(urlRemoteConfigPackage)
-  const currentPackage = await fs.readFile(pathCurrentPackage, 'utf-8')
+  const sConfigPackage = await rp(urlRemoteConfigPackage)
+  const sCurrentPackage = await fs.readFile(pathCurrentPackage, 'utf-8')
 
-  const mergedPackage = _.merge(JSON.parse(currentPackage), JSON.parse(configPackage))
+  const oConfigPackage = JSON.parse(configPackage)
+  const oCurrentPackage = JSON.parse(currentPackage)
 
-  await fs.writeFile(pathCurrentPackage, JSON.stringify(mergedPackage, null, 2))
+  const oMergedPackage = _.merge(oCurrentPackage, oConfigPackage)
+
+  await fs.writeFile(pathCurrentPackage, JSON.stringify(oMergedPackage, null, 2))
   
   console.log("✍️ Properties (scripts & congig) added to package.json...")
 })
