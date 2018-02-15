@@ -3,11 +3,12 @@ const path = require('path')
 const rp = require('request-promise')
 
 const urlConfigPackage = 'https://rawgit.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/package.json'
+const pathCurrentPackage =  path.join(__dirname,'package.json')
 
 rp(urlConfigPackage)
   .then(configPackage => {
 
-    const currentPackage = require(path.join(__dirname,'package.json'))
+    const currentPackage = fs.readFileSync(pathCurrentPackage)
 
     const mergedPackage = Object.assign({}, JSON.parse(configPackage), currentPackage)
     console.log(mergedPackage)
