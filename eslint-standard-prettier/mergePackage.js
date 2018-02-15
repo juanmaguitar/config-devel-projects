@@ -8,7 +8,7 @@ const pathCurrentPackage =  path.join(__dirname,'package.json')
 rp(urlConfigPackage)
   .then(configPackage => {
 
-    const currentPackage = fs.readFileSync(pathCurrentPackage)
+    const currentPackage = fs.readFileSync(pathCurrentPackage, 'utf-8')
 
     const mergedPackage = Object.assign({}, JSON.parse(configPackage), currentPackage)
     console.log(mergedPackage)
