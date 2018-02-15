@@ -1,5 +1,7 @@
 const fs = require('fs')
+const { readFile, writeFile, existsSync } = require('fs')
 const _ = require('lodash');
+const exec = require('child_process').exec
 const path = require('path')
 const rp = require('request-promise')
 
@@ -7,20 +9,41 @@ const PACKAGE_NAME = 'package.json'
 const urlRemote = 'https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/'
 
 const urlRemoteConfigPackage = urlRemote + PACKAGE_NAME
-const pathCurrentPackage = path.resolve(__dirname, PACKAGE_NAME)
 
-(async () => {
+/* helpers */
+const doesExist = source => existsSync(source)
+const getCurrentDirShell = () => 
+  new Promise( resolve => exec('pwd', (_, stdout) => resolve(stdout.replace('\n','')) ) )
+
+const pReadFile = pathToRead =>
+  new Promise( resolve => 
+    readFile(pathToRead, 'utf-8', (_, content) => resolve(content))
+  ) 
+const pWriteFile = (pathToWrite, oToWrite) => {
+  jsonToWrite = JSON.stringify(oToWrite, null, 2)
+  return new Promise( resolve => writeFile(pathToWrite, jsonToWrite, resolve)) 
+}
+
+(async function() {
+  
+  const pathCurrentProject = await getCurrentDirShell()
+  const pathCurrentPackage = path.join(pathCurrentProject, PACKAGE_NAME)
+  
   const sConfigPackage = (await rp(urlRemoteConfigPackage)) || '{}'
-  const sCurrentPackage = (await fs.readFile(pathCurrentPackage, 'utf-8')) || '{}'
 
-  const oConfigPackage = JSON.parse(configPackage)
-  const oCurrentPackage = JSON.parse(currentPackage)
+  const sCurrentPackage = doesExist(pathCurrentPackage)
+    ? (await pReadFile(pathCurrentPackage, 'utf-8')) 
+    : '{}'
+
+  const oConfigPackage = JSON.parse(sConfigPackage)
+  const oCurrentPackage = sCurrentPackage ? JSON.parse(sCurrentPackage) : {}
 
   const oMergedPackage = _.merge(oCurrentPackage, oConfigPackage)
 
-  await fs.writeFile(pathCurrentPackage, JSON.stringify(oMergedPackage, null, 2))
+  await pWriteFile(pathCurrentPackage, oMergedPackage)
   
   console.log("✍️ Properties (scripts & congig) added to package.json...")
+
 })()
 
 
