@@ -10,8 +10,8 @@ const urlRemoteConfigPackage = urlRemote + PACKAGE_NAME
 const pathCurrentPackage = path.join(__dirname,PACKAGE_NAME)
 
 (async function () {
-  const sConfigPackage = await rp(urlRemoteConfigPackage)
-  const sCurrentPackage = await fs.readFile(pathCurrentPackage, 'utf-8')
+  const sConfigPackage = (await rp(urlRemoteConfigPackage)) || '{}'
+  const sCurrentPackage = (await fs.readFile(pathCurrentPackage, 'utf-8')) || '{}'
 
   const oConfigPackage = JSON.parse(configPackage)
   const oCurrentPackage = JSON.parse(currentPackage)
