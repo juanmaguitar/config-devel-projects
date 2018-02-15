@@ -5,3 +5,5 @@ curl -fsSL $GITHUB_RAW_URL".eslintrc" > .eslintrc
 
 npm i lodash request request-promise
 curl -fsSL $GITHUB_RAW_URL"mergePackage.js" | node
+cat package.json
+npm i
