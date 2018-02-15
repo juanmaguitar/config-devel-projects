@@ -5,5 +5,5 @@ npm i -D babel-eslint eslint-config-standard eslint-plugin-import eslint-plugin-
 curl -fsSL https://rawgit.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/.babelrc > .babelrc
 curl -fsSL https://rawgit.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/.eslintrc > .eslintrc
 
-npm i package-merge request request-promise
+npm i lodash request request-promise
 curl -fsSL https://rawgit.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/mergePackage.js | node

@@ -1,21 +1,24 @@
 const fs = require('fs')
+const _ = require('lodash');
 const path = require('path')
 const rp = require('request-promise')
 
-const urlConfigPackage = 'https://rawgit.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/package.json'
+const urlConfigPackage = 'https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/package.json'
 const pathCurrentPackage =  path.join(__dirname,'package.json')
 
-rp(urlConfigPackage)
-  .then(configPackage => {
+console.log(urlConfigPackage)
+console.log(pathCurrentPackage)
 
-    const currentPackage = fs.readFileSync(pathCurrentPackage, 'utf-8')
+(async function () {
 
-    const mergedPackage = Object.assign({}, JSON.parse(configPackage), currentPackage)
-    console.log(mergedPackage)
+  const configPackage = async rp(urlConfigPackage)
+  
+  const currentPackage = fs.readFileSync(pathCurrentPackage, 'utf-8')
+  const mergedPackage = _.merge(JSON.parse(currentPackage), JSON.parse(configPackage))
 
-    fs.writeFileSync('package.json', JSON.stringify(mergedPackage, null, 2))
-    console.log("✍️ Scripts added to package.json...")
+  async fs.writeFile(pathCurrentPackage, JSON.stringify(mergedPackage, null, 2))
+  console.log("✍️ Properties (scripts & congig) added to package.json...")
 
-  })
+})
 
 
