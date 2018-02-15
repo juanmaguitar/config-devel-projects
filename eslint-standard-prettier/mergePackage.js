@@ -7,7 +7,7 @@ const PACKAGE_NAME = 'package.json'
 const urlRemote = 'https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/'
 
 const urlRemoteConfigPackage = urlRemote + PACKAGE_NAME
-const pathCurrentPackage = path.join(__dirname,PACKAGE_NAME)
+const pathCurrentPackage = path.resolve(__dirname,PACKAGE_NAME)
 
 (async function () {
   const sConfigPackage = (await rp(urlRemoteConfigPackage)) || '{}'
