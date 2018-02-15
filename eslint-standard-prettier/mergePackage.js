@@ -3,7 +3,7 @@ const rp = require('request-promise')
 
 const urlConfigPackage = 'https://rawgit.com/juanmaguitar/config-devel-projects/master/eslint-standard-prettier/package.json'
 
-(async () => {
+(async function() {
 
   console.log(__dirname)
   console.log(process.cwd)
