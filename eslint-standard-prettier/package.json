@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "format": "prettier-eslint --log-level info --write $npm_package_config_format_target",
+    "lint": "eslint $npm_package_config_lint_target",
+    "lint:fix": "eslint --fix $npm_package_config_format_target"
+  },
+  "config": {
+    "lint": {
+      "target": "./src/**/*.js"
+    },
+    "format": {
+      "target": "./src/**/*.js"
+    }
+  }
+}
