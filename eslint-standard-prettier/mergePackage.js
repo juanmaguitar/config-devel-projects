@@ -6,6 +6,7 @@ const urlConfigPackage = 'https://rawgit.com/juanmaguitar/config-devel-projects/
 const currentPackage = fs.readFileSync('package.json')
 
 const mergedPackage = merge(urlConfigPackage,currentPackage)
+console.log(mergedPackage)
 fs.writeFileSync('package.json', JSON.stringify(mergedPackage, null, 2))
 
 console.log("✍️ Scripts added to package.json...")
