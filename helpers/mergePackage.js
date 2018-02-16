@@ -42,7 +42,7 @@ const pWriteFile = (pathToWrite, oToWrite) => {
 
   await pWriteFile(pathCurrentPackage, oMergedPackage)
   
-  console.log("✍️ Properties (scripts & congig) added to package.json...")
+  console.log("✍️ Properties (scripts & config) added to package.json...")
 
 })()
 

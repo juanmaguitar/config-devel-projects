@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "format": "prettier-eslint --log-level info --write $npm_package_config_format_target"
+  },
+  "config": {
+    "format": {
+      "target": "./src/**/*.js"
+    }
+  },
+  "devDependencies": {
+    "prettier-eslint": "^8.8.1"
+  }
+}

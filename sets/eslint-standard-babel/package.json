@@ -1,28 +1,20 @@
 {
   "scripts": {
-    "format": "prettier-eslint --log-level info --write $npm_package_config_format_target",
     "lint": "eslint $npm_package_config_lint_target",
     "lint:fix": "eslint --fix $npm_package_config_format_target"
   },
   "config": {
     "lint": {
       "target": "./src/**/*.js"
-    },
-    "format": {
-      "target": "./src/**/*.js"
     }
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.6.1",
-    "eslint-plugin-standard": "^3.0.1",
-    "prettier-eslint": "^8.8.1"
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
