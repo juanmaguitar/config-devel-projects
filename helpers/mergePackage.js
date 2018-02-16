@@ -6,7 +6,7 @@ const path = require('path')
 const rp = require('request-promise')
 
 const PACKAGE_NAME = 'package.json'
-const urlRemote = process.env.GITHUB_RAW_URL
+const urlRemote = process.env.GITHUB_SET_RAW_URL
 
 const urlRemoteConfigPackage = urlRemote + PACKAGE_NAME
 
