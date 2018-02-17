@@ -19,6 +19,5 @@ module.exports = (env = {}) => {
     ...addons(env.addons)
   )
 
-  console.log(mergedConfig)
   return mergedConfig
 }

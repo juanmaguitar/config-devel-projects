@@ -21,10 +21,10 @@ curl -fsSL $REMOTE_WEBPACK_DEV > build-utils/webpack.dev.js
 REMOTE_WEBPACK_PROD=$GITHUB_SET_RAW_URL"build-utils/webpack.prod.js"
 curl -fsSL $REMOTE_WEBPACK_PROD > build-utils/webpack.prod.js
 
-REMOTE_WEBPACK_ADDON_BUNDLEANALYZE=$GITHUB_SET_RAW_URL"addons/webpack.bundleanalyze.js"
+REMOTE_WEBPACK_ADDON_BUNDLEANALYZE=$GITHUB_SET_RAW_URL"build-utils/addons/webpack.bundleanalyze.js"
 curl -fsSL $REMOTE_WEBPACK_ADDON_BUNDLEANALYZE > build-utils/addons/webpack.bundleanalyze.js
 
-REMOTE_WEBPACK_ADDON_BUNDLEBUDDY=$GITHUB_SET_RAW_URL"addons/webpack.bundlebuddy.js"
+REMOTE_WEBPACK_ADDON_BUNDLEBUDDY=$GITHUB_SET_RAW_URL"build-utils/addons/webpack.bundlebuddy.js"
 curl -fsSL $REMOTE_WEBPACK_ADDON_BUNDLEBUDDY > build-utils/addons/webpack.bundlebuddy.js
 
 # Merge package.json
