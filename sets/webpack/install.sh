@@ -30,7 +30,7 @@ curl -fsSL $REMOTE_WEBPACK_ADDON_BUNDLEBUDDY > build-utils/addons/webpack.bundle
 # Merge package.json
 echo "Merging properties in package.json ..."
 REMOTE_MERGE_PACKAGES_NODE=$GITHUB_RAW_BASE"/helpers/mergePackages.js"
-npm i lodash request request-promise
+yarn add lodash request request-promise
 GITHUB_SET_RAW_URL=$GITHUB_SET_RAW_URL node -e "$(curl -fsSL $REMOTE_MERGE_PACKAGES_NODE)"
 cat package.json
-npm i
+yarn install

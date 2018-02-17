@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "npm run webpack-dev-server -- --env.env=dev",
-    "build": "npm run webpack -- --env.env=prod",
+    "dev": "yarn webpack-dev-server --env.env=dev",
+    "build": "yarn webpack --env.env=prod",
     "debug": "node --inspect --debug-brk ./node_modules/webpack/bin/webpack",
     "webpack": "node ./node_modules/webpack/bin/webpack",
     "webpack-dev-server": "webpack-dev-server --port=9000",
