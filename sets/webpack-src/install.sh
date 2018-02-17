@@ -1,34 +1,20 @@
 GITHUB_RAW_BASE="https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master"
-GITHUB_SET_RAW_URL=$GITHUB_RAW_BASE"/sets/webpack/"
+GITHUB_SET_RAW_URL=$GITHUB_RAW_BASE"/sets/webpack-src/"
 
 # Files creation
-REMOTE_WEBPACK=$GITHUB_SET_RAW_URL"webpack.config.js"
-
-REMOTE_COMMON_PATHS=$GITHUB_SET_RAW_URL"build-utils/common-paths.js"
-REMOTE_WEBPACK_COMMON=$GITHUB_SET_RAW_URL"build-utils/webpack.common.js"
-REMOTE_WEBPACK_DEV=$GITHUB_SET_RAW_URL"build-utils/webpack.dev.js"
-REMOTE_WEBPACK_PROD=$GITHUB_SET_RAW_URL"build-utils/webpack.prod.js"
-REMOTE_WEBPACK_ADDON_BUNDLEANALYZE=$GITHUB_SET_RAW_URL"addons/webpack.bundleanalyze.js"
-REMOTE_WEBPACK_ADDON_BUNDLEBUDDY=$GITHUB_SET_RAW_URL"addons/webpack.bundlebuddy.js"
-
 echo "Creating build-utils folder & files ..."
-mkdir build-utils
-mkdir build-utils/addons
+mkdir src
+mkdir src/{assets,js,scss}
 
-curl -fsSL $REMOTE_WEBPACK > webpack.config.js
+REMOTE_FAVICON=$GITHUB_SET_RAW_URL"assets/favicon.ico"
+curl -fsSL $REMOTE_FAVICON > assets/favicon.ico
 
-curl -fsSL $REMOTE_COMMON_PATHS > build-utils/common-paths.js
-curl -fsSL $REMOTE_WEBPACK_COMMON > build-utils/webpack.common.js
-curl -fsSL $REMOTE_WEBPACK_DEV > build-utils/webpack.dev.js
+REMOTE_INDEX_TEMPLATE=$GITHUB_SET_RAW_URL"assets/index.template.html"
+curl -fsSL $REMOTE_INDEX_TEMPLATE > assets/index.template.html
 
-curl -fsSL $REMOTE_WEBPACK_ADDON_BUNDLEANALYZE > build-utils/addons/webpack.bundleanalyze.js
-curl -fsSL $REMOTE_WEBPACK_ADDON_BUNDLEBUDDY > build-utils/addons/webpack.bundlebuddy.js
+REMOTE_INDEX_JS=$GITHUB_SET_RAW_URL"js/index.js"
+curl -fsSL $REMOTE_INDEX_JS > js/index.js
 
-# Merge package.json
-echo "Merging properties in package.json ..."
-GITHUB_HELPERS_RAW_URL=$GITHUB_RAW_BASE"/helpers/"
-REMOTE_MERGE_PACKAGES_NODE=$GITHUB_HELPERS_RAW_URL"mergePackage.js"
-npm i lodash request request-promise
-GITHUB_SET_RAW_URL=$GITHUB_SET_RAW_URL node -e "$(curl -fsSL $REMOTE_MERGE_PACKAGES_NODE)"
-cat package.json
-npm i
+REMOTE_INDEX_SASS=$GITHUB_SET_RAW_URL"scss/index.scss"
+curl -fsSL $REMOTE_INDEX_SASS > scss/index.scss
+
