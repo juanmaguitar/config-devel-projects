@@ -7,14 +7,14 @@ mkdir src
 mkdir src/{assets,js,scss}
 
 REMOTE_FAVICON=$GITHUB_SET_RAW_URL"src/assets/favicon.ico"
-curl -fsSL $REMOTE_FAVICON > assets/favicon.ico
+curl -fsSL $REMOTE_FAVICON > src/assets/favicon.ico
 
 REMOTE_INDEX_TEMPLATE=$GITHUB_SET_RAW_URL"src/assets/index.template.html"
-curl -fsSL $REMOTE_INDEX_TEMPLATE > assets/index.template.html
+curl -fsSL $REMOTE_INDEX_TEMPLATE > src/assets/index.template.html
 
 REMOTE_INDEX_JS=$GITHUB_SET_RAW_URL"src/js/index.js"
-curl -fsSL $REMOTE_INDEX_JS > js/index.js
+curl -fsSL $REMOTE_INDEX_JS > src/js/index.js
 
 REMOTE_INDEX_SASS=$GITHUB_SET_RAW_URL"src/scss/index.scss"
-curl -fsSL $REMOTE_INDEX_SASS > scss/index.scss
+curl -fsSL $REMOTE_INDEX_SASS > src/scss/index.scss
 
