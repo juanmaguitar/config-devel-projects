@@ -1,0 +1,16 @@
+$background-color: #E6EBE0;
+$foreground-color: #ED6A5A;
+$font-size-xxl: 4rem;
+
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+
+body {
+  background: $background-color;
+  display: flex;
+  justify-content: center;
+  h1 {
+    font-family: "Rock Salt";
+    color: #ED6A5A;
+    font-size: $font-size-xxl;
+  }
+}

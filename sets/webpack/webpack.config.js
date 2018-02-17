@@ -1,22 +1,23 @@
 const commonConfig = require('./build-utils/webpack.common')
 const webpackMerge = require('webpack-merge')
 
-const addons = addonsArg => {
-  let addons = []
-        .concat.apply([], [addonsArg])
-        .filter(Boolean)
+const addons = addonsArg => { // eslint-disable-line no-unused-vars
+  let addons = [].concat.apply([], [addonsArg]).filter(Boolean) // eslint-disable-line no-useless-call
 
-  return addons.map( addonName => require(`./build-utils/addons/webpack.${addonName}.js`))
-
+  return addons.map(addonName =>
+    require(`./build-utils/addons/webpack.${addonName}.js`)
+  )
 }
 
-module.exports = env =>  {
-  if (!env) {
-    throw new Error('You must pass an --env.env flag into your build for webpack to work!')
-  }
-  console.log(env)
-  const envConfig = require(`./build-utils/webpack.${env.env}.js`)
-  const mergedConfig = webpackMerge(commonConfig, envConfig, ...addons(env.addons))
+module.exports = (env = {}) => {
+  const environment = env.env || 'dev'
+
+  const envConfig = require(`./build-utils/webpack.${environment}.js`)
+  const mergedConfig = webpackMerge(
+    commonConfig,
+    envConfig,
+    ...addons(env.addons)
+  )
 
   console.log(mergedConfig)
   return mergedConfig

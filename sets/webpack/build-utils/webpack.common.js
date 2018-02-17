@@ -1,11 +1,12 @@
 const path = require('path')
-const webpack = require('webpack')
 const { entryPath, outputPath } = require('./common-paths')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
+
+const pathsToClean = [outputPath]
 
 const cssLoader = { loader: 'css-loader' }
 const sassLoader = {
@@ -25,13 +26,14 @@ const postCssLoader = {
       })
     ]
   }
-
-const pathsToClean = [outputPath]
+}
 
 const config = {
-  entry: entryPath,
+  entry: {
+    bundle: path.resolve(entryPath, 'js/index.js')
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[hash].js',
     path: outputPath
   },
   module: {
@@ -41,6 +43,10 @@ const config = {
         test: /\.js$/,
         use: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract([cssLoader, postCssLoader, sassLoader])
       },
       /* IMAGES */
       {
@@ -69,9 +75,14 @@ const config = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(pathsToClean, cleanOptions),
+    new ExtractTextPlugin('css/style.css'),
+    new CleanWebpackPlugin(pathsToClean),
     new ProgressBarPlugin(),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      favicon: 'src/assets/favicon.ico',
+      template: 'src/assets/index.template.html'
+    })
   ]
 }
 

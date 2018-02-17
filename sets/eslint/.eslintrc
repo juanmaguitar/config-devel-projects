@@ -1,10 +1,14 @@
 {
   "parser": "babel-eslint",
   "plugins": [
-    "react"
+    "react",
+    "prefer-object-spread"
   ],
   "extends": [
     "standard",
     "plugin:react/recommended"
-  ]
+  ],
+  "rules": {
+    "prefer-object-spread/prefer-object-spread": 2
+  }
 }

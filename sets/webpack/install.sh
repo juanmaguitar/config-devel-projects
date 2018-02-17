@@ -1,29 +1,17 @@
-GITHUB_SET_RAW_URL="https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master/sets/webpack/"
-GITHUB_HELPERS_RAW_URL="https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master/helpers/"
+GITHUB_RAW_BASE="https://raw.githubusercontent.com/juanmaguitar/config-devel-projects/master"
+GITHUB_SET_RAW_URL=$GITHUB_RAW_BASE"/sets/webpack-src/"
 
-REMOTE_WEBPACK=$GITHUB_SET_RAW_URL"webpack.config.js"
-
-REMOTE_COMMON_PATHS=$GITHUB_SET_RAW_URL"build-utils/common-paths.js"
-REMOTE_WEBPACK_COMMON=$GITHUB_SET_RAW_URL"build-utils/webpack.common.js"
-REMOTE_WEBPACK_DEV=$GITHUB_SET_RAW_URL"build-utils/webpack.dev.js"
-REMOTE_WEBPACK_PROD=$GITHUB_SET_RAW_URL"build-utils/webpack.prod.js"
-
-REMOTE_WEBPACK_ADDON_BUNDLEANALYZE=$GITHUB_SET_RAW_URL"addons/webpack.bundleanalyze.js"
-REMOTE_WEBPACK_ADDON_BUNDLEBUDDY=$GITHUB_SET_RAW_URL"addons/webpack.bundlebuddy.js"
+# Files creation
+REMOTE_FAVICON=$GITHUB_SET_RAW_URL"assets/favicon.ico"
+REMOTE_INDEX_TEMPLATE=$GITHUB_SET_RAW_URL"assets/index.template.html"
+REMOTE_INDEX_JS=$GITHUB_SET_RAW_URL"js/index.js"
+REMOTE_INDEX_SASS=$GITHUB_SET_RAW_URL"scss/index.scss"
 
 echo "Creating build-utils folder & files ..."
-mkdir build-utils
-mkdir build-utils/addons
-curl -fsSL $REMOTE_WEBPACK > webpack.config.js
-curl -fsSL $REMOTE_COMMON_PATHS > build-utils/common-paths.js
-curl -fsSL $REMOTE_WEBPACK_COMMON > build-utils/webpack.common.js
-curl -fsSL $REMOTE_WEBPACK_DEV > build-utils/webpack.dev.js
-curl -fsSL $REMOTE_WEBPACK_PROD > build-utils/webpack.prod.js
+mkdir src
+mkdir src/{assets,js,scss}
 
-REMOTE_MERGE_PACKAGES_NODE=$GITHUB_HELPERS_RAW_URL"mergePackage.js"
-
-echo "Merging properties in package.json ..."
-npm i lodash request request-promise
-GITHUB_SET_RAW_URL=$GITHUB_SET_RAW_URL node -e "$(curl -fsSL $REMOTE_MERGE_PACKAGES_NODE)"
-cat package.json
-npm i
+curl -fsSL $REMOTE_FAVICON > assets/favicon.ico
+curl -fsSL $REMOTE_INDEX_TEMPLATE > assets/index.template.html
+curl -fsSL $REMOTE_INDEX_JS > js/index.js
+curl -fsSL $REMOTE_INDEX_SASS > scss/index.scss

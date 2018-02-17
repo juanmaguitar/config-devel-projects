@@ -1,5 +1,3 @@
-
-
 const config = {
   devtool: 'source-map', // webpack.org/configuration/devtool
   module: {
@@ -16,20 +14,9 @@ const config = {
           // failOnError: false,
           // failOnWarning: false
         }
-      },
-      {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract([
-          cssLoader, 
-          postCssLoader, 
-          sassLoader
-        ])
       }
     ]
-  },
-  plugins: [
-    new ExtractTextPlugin('css/style.css')
-  ]
+  }
 }
 
 module.exports = config
